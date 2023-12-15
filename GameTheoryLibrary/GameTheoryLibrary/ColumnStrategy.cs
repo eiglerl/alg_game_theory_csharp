@@ -1,6 +1,6 @@
 ﻿namespace GameTheoryLibrary;
 
-public class ColumnStrategy : Matrix
+public class ColumnStrategy : Matrix, IPlayerStrat
 {
     public ColumnStrategy(double[,] data) : base(data)
     {
@@ -22,6 +22,12 @@ public class ColumnStrategy : Matrix
         double[] strat = new double[len];
         strat[index] = 1;
         return strat;
+    }
+
+    public double this[int col]
+    {
+        get { return Data[0, col]; }
+        set { Data[0, col] = value; }
     }
 
 
