@@ -74,8 +74,8 @@ public class SelfPlayTests
             colStrategies.Add(strat);
         }
 
-        var avgRowStrat = SelfPlayAgent.AverageRowStrategy(rowStrategies, numberOfActions);
-        var avgColStrat = SelfPlayAgent.AverageColumnStrategy(colStrategies, numberOfActions);
+        var avgRowStrat = StrategyUsefulFunctions.AverageRowStrategy(rowStrategies, numberOfActions);
+        var avgColStrat = StrategyUsefulFunctions.AverageColumnStrategy(colStrategies, numberOfActions);
 
         Assert.Equal(resRow.Data, avgRowStrat.Data);
         Assert.Equal(resCol.Data, avgColStrat.Data);
