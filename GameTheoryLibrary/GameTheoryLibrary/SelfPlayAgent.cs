@@ -49,7 +49,7 @@ public partial class SelfPlayAgent
             return strat;
         }
 
-        double[] counts = new double[rowStrategies.Count];
+        double[] counts = new double[numberOfActions];
 
         foreach (var strat in rowStrategies)
         {

@@ -14,10 +14,10 @@ public class SelfPlayTests
                 new double[] { 0, 0, 1 },
             },
             3,
-            new double[,] { 
-                { (double)1 / 3 },
-                { (double)1 / 3 },
-                { (double)1 / 3 } 
+            new double[] { 
+                (double)1 / 3,
+                (double)1 / 3,
+                (double)1 / 3 
             }
         };
 
@@ -35,10 +35,10 @@ public class SelfPlayTests
                 new double[] { 0, 0, 1 },
             },
             3,
-            new double[,] {
-                { (double)3 / 6 },
-                { (double)2 / 6 },
-                { (double)1 / 6 }
+            new double[] {
+                (double)3 / 6,
+                (double)2 / 6,
+                (double)1 / 6
             }
         };
 
@@ -50,10 +50,10 @@ public class SelfPlayTests
                 new double[] { 0.1, 0.2, 0.7 },
             },
             3,
-            new double[,] {
-                { (0.6+0.7+0.1) / 3 },
-                { (0.2+0.2) / 3 },
-                { (0.2+0.3+0.7) / 3 }
+            new double[] {
+                 (0.6+0.7+0.1) / 3,
+                 (0.2+0.2) / 3,
+                 (0.2+0.3+0.7) / 3 
             }
         };
 
@@ -61,15 +61,23 @@ public class SelfPlayTests
 
     [Theory]
     [MemberData(nameof(TestData))]
-    //public void AverageRowStrategyTest(RowStrategy r1, RowStrategy r2, RowStrategy r3, int numberOfActions, double[] result)
-    public void AverageRowStrategyTest(List<double[]> strats, int numberOfActions, double[,] result)
+    public void AverageRowStrategyTest(List<double[]> strats, int numberOfActions, double[] result)
     {
         List<RowStrategy> rowStrategies = [];
-        foreach (var strat in strats)
-            rowStrategies.Add(strat);        
-        
-        var avgStrat = SelfPlayAgent.AverageRowStrategy(rowStrategies, numberOfActions);
+        RowStrategy resRow = result;
+        List<ColumnStrategy> colStrategies = [];
+        ColumnStrategy resCol = result;
 
-        Assert.Equal(result, avgStrat.Data);
+        foreach (var strat in strats)
+        {
+            rowStrategies.Add(strat);
+            colStrategies.Add(strat);
+        }
+
+        var avgRowStrat = SelfPlayAgent.AverageRowStrategy(rowStrategies, numberOfActions);
+        var avgColStrat = SelfPlayAgent.AverageColumnStrategy(colStrategies, numberOfActions);
+
+        Assert.Equal(resRow.Data, avgRowStrat.Data);
+        Assert.Equal(resCol.Data, avgColStrat.Data);
     }
 }
