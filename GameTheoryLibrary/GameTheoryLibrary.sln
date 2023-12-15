@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameTheoryLibrary", "GameTheoryLibrary\GameTheoryLibrary.csproj", "{1D49918A-B603-4497-829F-846940DC1E84}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameTheory", "GameTheory\GameTheory.csproj", "{3D2576E4-B60E-4A5C-973D-AF97F9CF1210}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1D49918A-B603-4497-829F-846940DC1E84} = {1D49918A-B603-4497-829F-846940DC1E84}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameTheoryTests", "GameTheoryTests\GameTheoryTests.csproj", "{79C449C6-D520-4231-A9D8-B79A201C4EF1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1D49918A-B603-4497-829F-846940DC1E84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D49918A-B603-4497-829F-846940DC1E84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D49918A-B603-4497-829F-846940DC1E84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D49918A-B603-4497-829F-846940DC1E84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D2576E4-B60E-4A5C-973D-AF97F9CF1210}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D2576E4-B60E-4A5C-973D-AF97F9CF1210}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D2576E4-B60E-4A5C-973D-AF97F9CF1210}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D2576E4-B60E-4A5C-973D-AF97F9CF1210}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79C449C6-D520-4231-A9D8-B79A201C4EF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79C449C6-D520-4231-A9D8-B79A201C4EF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79C449C6-D520-4231-A9D8-B79A201C4EF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79C449C6-D520-4231-A9D8-B79A201C4EF1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {37337B04-2555-40BA-A483-4430FFC9BF36}
+	EndGlobalSection
+EndGlobal
