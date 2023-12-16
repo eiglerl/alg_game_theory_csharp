@@ -29,10 +29,10 @@ public static partial class MatrixGameEvaluator
             values[i] = rowVal;
         }
 
-        Plot(steps, values);
+        Scatter(steps, values);
     }
 
-    public static void Plot(double[] xAxis, double[] yAxis)
+    public static void Scatter(double[] xAxis, double[] yAxis)
     {
         // Set the Python DLL path
         string pythonDllPath = @"C:\Users\eigle\AppData\Local\Programs\Python\Python310\python310.dll"; // Change this path to your Python DLL location
@@ -57,9 +57,46 @@ public static partial class MatrixGameEvaluator
 
             // Show the plot
             matplotlib.show();
-
-            Console.WriteLine("Press Enter to exit.");
-            Console.ReadLine();
         }
+    }
+
+    public static void Scatter(double[] yAxis)
+    {
+        double[] xAxis = Enumerable.Range(1, yAxis.Length).Select(x => (double)x).ToArray();
+        Scatter(xAxis, yAxis);
+    }
+
+    public static void Plot(double[] xAxis, double[] yAxis)
+    {
+        // Set the Python DLL path
+        string pythonDllPath = @"C:\Users\eigle\AppData\Local\Programs\Python\Python310\python310.dll"; // Change this path to your Python DLL location
+
+        Environment.SetEnvironmentVariable("PYTHONNET_PYDLL", pythonDllPath);
+        PythonEngine.Initialize();
+
+        //PythonEngine.Initialize();
+        using (Py.GIL())
+        {
+            dynamic matplotlib = Py.Import("matplotlib.pyplot");
+
+            // Example data
+            dynamic x = xAxis;
+            dynamic y = yAxis;
+
+            // Plotting
+            matplotlib.plot(x, y);
+            matplotlib.xlabel("Probability");
+            matplotlib.ylabel("Value");
+            matplotlib.title("Best Response Function Value");
+
+            // Show the plot
+            matplotlib.show();
+        }
+    }
+
+    public static void Plot(double[] yAxis)
+    {
+        double[] xAxis = Enumerable.Range(1, yAxis.Length).Select(x => (double)x).ToArray();
+        Plot(xAxis, yAxis);
     }
 }

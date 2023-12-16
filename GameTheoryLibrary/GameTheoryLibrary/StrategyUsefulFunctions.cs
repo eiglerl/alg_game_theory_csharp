@@ -1,6 +1,4 @@
-﻿using GameTheoryLibrary;
-
-namespace GameTheoryTests;
+﻿namespace GameTheoryLibrary;
 
 public static class StrategyUsefulFunctions
 {
@@ -21,13 +19,8 @@ public static class StrategyUsefulFunctions
     {
         // No strategies to go off of
         if (strategies.Count == 0)
-        {
-            var strat = new double[numberOfActions];
-
-            for (int i = 0; i < numberOfActions; i++)
-                strat[i] = (double)1 / numberOfActions;
-            return strat;
-        }
+            return CreateUniformStrat(numberOfActions);
+        
 
         double[] counts = new double[numberOfActions];
 
@@ -39,6 +32,15 @@ public static class StrategyUsefulFunctions
 
         double[] avgStrat = counts.Select(x => x / strategies.Count).ToArray();
         return avgStrat;
+    }
+
+    public static double[] CreateUniformStrat(int len)
+    {
+        var strat = new double[len];
+
+        for (int i = 0; i < len; i++)
+            strat[i] = (double)1 / len;
+        return strat;
     }
 
 }

@@ -59,12 +59,28 @@ internal class Program
 
         //matrix = np.array([[2, 0, 0.8],
         //[-1, 1, -0.5]])
+        //Matrix utilityMatrix = new double[,]
+        //{
+        //    { -1, 0, -0.8 },
+        //    { 1, -1, -0.5 }
+        //};
+
+        //MatrixGameEvaluator.BestResponseValueFunction(utilityMatrix);
+
+
         Matrix utilityMatrix = new double[,]
         {
-            { -1, 0, -0.8 },
-            { 1, -1, -0.5 }
+            { 0, 1, -1 },
+            { -1, 0, 1 },
+            { 1, -1, 0 }
         };
 
-        MatrixGameEvaluator.BestResponseValueFunction(utilityMatrix);
+        var exploitabilities = SelfPlayAgent.Play(utilityMatrix, numberOfTurns: 100);
+        //var exploitabilities = SelfPlayAgent.Play(utilityMatrix, numberOfTurns: 100,
+        //    rowStratGenerator: SelfPlayAgent.BestRespondAverageColumnStrat,
+        //    colStratGenerator: SelfPlayAgent.BestRespondAverageRowStrat);
+        MatrixGameEvaluator.Plot(exploitabilities.ToArray());
+
+
     }
 }

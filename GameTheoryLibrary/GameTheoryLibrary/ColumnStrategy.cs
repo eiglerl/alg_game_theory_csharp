@@ -30,5 +30,14 @@ public class ColumnStrategy : Matrix, IPlayerStrat
         set { Data[0, col] = value; }
     }
 
+    public override string ToString()
+    {
+        string text = "[";
+        for (int i = 0; i < Data.GetLength(1); i++)
+        {
+            text += this[i].ToString() + " ";
+        }
+        return text.Substring(0, text.Length - 1) + "]";
+    }
 
 }

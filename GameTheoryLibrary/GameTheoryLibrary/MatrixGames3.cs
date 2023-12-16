@@ -29,4 +29,12 @@ public static partial class MatrixGameEvaluator
 
     public static double CalculateNashConv(Matrix utility, RowStrategy row, ColumnStrategy col)
         => CalculateNashConv(utility, -utility, row, col);
+
+    public static double CalculateExploitability(Matrix utility1, Matrix utility2, RowStrategy row, ColumnStrategy col)
+        => CalculateNashConv(utility1, utility2, row, col) / 2;
+
+    public static double CalculateExploitability(Matrix utility, RowStrategy row, ColumnStrategy col)
+        => CalculateExploitability(utility, -utility, row, col);
+
+    
 }

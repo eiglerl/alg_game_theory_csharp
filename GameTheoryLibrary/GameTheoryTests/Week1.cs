@@ -91,4 +91,12 @@ public class Week1
         // BR is only playing R
         Assert.Equal(new double[,] { { 1, 0, 0 } }, br.Data);
     }
+
+    [Fact]
+    public void PureRowStrategyCreation()
+    {
+        RowStrategy row = RowStrategy.CreatePureStrategy(3, 0);
+
+        Assert.Equal(new double[,] { { 1 }, { 0 }, { 0 } }, row.Data);
+    }
 }

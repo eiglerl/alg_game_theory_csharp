@@ -7,6 +7,21 @@ public class SelfPlayTests
     {
         // Uniform strat
         yield return new object[]
+{
+            new List<double[]>{
+
+            },
+            3,
+            new double[] {
+                (double)1 / 3,
+                (double)1 / 3,
+                (double)1 / 3
+            }
+};
+
+
+        // Uniform strat
+        yield return new object[]
         {
             new List<double[]>{
                 new double[] { 1, 0, 0 },

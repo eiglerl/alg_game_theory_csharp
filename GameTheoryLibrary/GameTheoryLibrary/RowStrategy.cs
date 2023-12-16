@@ -24,11 +24,28 @@ public class RowStrategy : Matrix, IPlayerStrat
         return strat;
     }
 
+    public static RowStrategy CreateUniformStrategy(int len)
+    {
+        var strat = new double[len];
+
+        for (int i = 0; i < len; i++)
+            strat[i] = (double)1 / len;
+        return strat;
+    }
+
     public double this[int row]
     {
         get { return Data[row, 0]; }
         set { Data[row, 0] = value; }
     }
 
-
+    public override string ToString()
+    {
+        string text = "[";
+        for (int i = 0; i < Data.GetLength(0); i++)
+        {
+            text += this[i].ToString() + " ";
+        }
+        return text.Substring(0, text.Length - 1) + "]";
+    }
 }
