@@ -63,7 +63,11 @@ public partial class SelfPlayAgent
         return MatrixGameEvaluator.GetBestResponse(utility, lastRowStrat);
     }
 
-    public static List<double> Play(Matrix utility1, Matrix utility2, int numberOfTurns = 20, ChooseNextRowStrategyDelegate? rowStratGenerator = null, ChooseNextColumnStrategyDelegate? colStratGenerator = null)
+    public static List<double> Play(Matrix utility1, Matrix utility2, int numberOfTurns = 20,
+        ChooseNextRowStrategyDelegate? rowStratGenerator = null,
+        ChooseNextColumnStrategyDelegate? colStratGenerator = null,
+        RowStrategy? firstRowStrat = null,
+        ColumnStrategy? firstColStrat = null)
     {
         // if null use BR to last opponent strat
         rowStratGenerator ??= BestRespondLastColumnStrat;
@@ -77,8 +81,9 @@ public partial class SelfPlayAgent
         for (int i = 0; i < numberOfTurns; i++)
         {
             Console.WriteLine($"Turn {i+1}");
-            RowStrategy row = rowStratGenerator(utility1, colStrategies);
-            ColumnStrategy col = colStratGenerator(utility2, rowStrategies);
+            // if its the first turn and firstRowStrat is not null, use firstRowStrat
+            RowStrategy row = (i != 0 || firstRowStrat is null) ? rowStratGenerator(utility1, colStrategies) : firstRowStrat;
+            ColumnStrategy col = (i != 0 || firstColStrat is null) ? colStratGenerator(utility2, rowStrategies) : firstColStrat;
             Console.WriteLine($"col strat: {col}");
             Console.WriteLine($"row strat: {row}");
             Console.WriteLine("---------");
@@ -101,7 +106,11 @@ public partial class SelfPlayAgent
         return exploitabilities;
     }
 
-    public static List<double> Play(Matrix utility, int numberOfTurns = 20, ChooseNextRowStrategyDelegate? rowStratGenerator = null, ChooseNextColumnStrategyDelegate? colStratGenerator = null)
-        => Play(utility, -utility, numberOfTurns, rowStratGenerator, colStratGenerator);
+    public static List<double> Play(Matrix utility, int numberOfTurns = 20,
+        ChooseNextRowStrategyDelegate? rowStratGenerator = null,
+        ChooseNextColumnStrategyDelegate? colStratGenerator = null,
+        RowStrategy? firstRowStrat = null,
+        ColumnStrategy? firstColStrat = null)
+        => Play(utility, -utility, numberOfTurns, rowStratGenerator, colStratGenerator, firstRowStrat, firstColStrat);
 
 }

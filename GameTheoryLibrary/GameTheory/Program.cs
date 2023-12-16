@@ -75,10 +75,22 @@ internal class Program
             { 1, -1, 0 }
         };
 
-        var exploitabilities = SelfPlayAgent.Play(utilityMatrix, numberOfTurns: 100);
+        //var exploitabilities = SelfPlayAgent.Play(utilityMatrix, numberOfTurns: 100);
+
+        var exploitabilities = SelfPlayAgent.Play(utilityMatrix, numberOfTurns: 1000,
+            rowStratGenerator: SelfPlayAgent.BestRespondAverageColumnStrat,
+            colStratGenerator: SelfPlayAgent.BestRespondAverageRowStrat);
+
+        //var exploitabilities = SelfPlayAgent.Play(utilityMatrix, numberOfTurns: 100,
+        //    firstRowStrat: new double[] {0, 0, 1});
+
         //var exploitabilities = SelfPlayAgent.Play(utilityMatrix, numberOfTurns: 100,
         //    rowStratGenerator: SelfPlayAgent.BestRespondAverageColumnStrat,
-        //    colStratGenerator: SelfPlayAgent.BestRespondAverageRowStrat);
+        //    colStratGenerator: SelfPlayAgent.BestRespondAverageRowStrat,
+        //    firstRowStrat: new double[] { 0, 0, 1 },
+        //    firstColStrat: new double[] { 1, 0, 0 });
+
+
         MatrixGameEvaluator.Plot(exploitabilities.ToArray());
 
 
